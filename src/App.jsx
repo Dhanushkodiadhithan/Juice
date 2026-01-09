@@ -8,13 +8,12 @@ function App() {
   useEffect(() => {
     const ctx = gsap.context(
       () => {
-        const t1 = gsap.timeline();
+const t1 = gsap.timeline();
 
         t1.from(
           ".becool",{
             y: 100,
             opacity: 0,
-            duration: 1,
             ease: "power2.out",
           }
         )
@@ -22,7 +21,6 @@ function App() {
           ".can1",{
             y: 300,
             opacity: 0,
-            duration: 0.5,
             ease: "ease.in",
           }
         )
@@ -30,7 +28,6 @@ function App() {
           ".just",{
             y: -200,
             opacity: 0,
-            duration: 0.5,
             ease: "ease.in",
             stagger: 0.2,
           }
@@ -46,9 +43,10 @@ function App() {
         t2.to(
           ".can1",
           {
-            y: 900,
-            x: -350,
+            x: -500,
+            y: 800,
             rotation: 0,
+            scale: 0.8,
             ease: "ease.in",
           },
           "first"
@@ -56,13 +54,83 @@ function App() {
         t2.to(
           ".lemon2",
           {
-            y: 473,
-            x: 150,
+            y: 450,
+            x: 80,
             rotation: 360,
             ease: "ease.in",
           },
           "first"
         );
+        const t3 = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".types",
+            start: "top 90%",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        });
+        t3.to(
+          ".can1",
+          {
+            x: 0,
+            y:1500,
+            rotation: 0,
+            scale: 0.8,
+            ease: "ease.in",
+          },
+          "second"
+        );
+        t3.to(
+          ".lemon2",
+          {
+            y: 1650,
+            x: 354,
+            rotation: 360,
+            ease: "ease.in",
+          },
+          "second"
+        );
+        t3.from(".can2,.lf1",{
+          x: -300,
+          opacity: 0,
+          duration: 0.5,
+          ease: "ease.in",
+        },"second")
+        t3.from(".can3,.lf3",{
+          x: 300,
+          opacity: 0,
+          duration: 0.5,
+          ease: "ease.in",
+        },"second")
+        const t4 = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".contact",
+            start: "top 90%",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        })
+        t4.to(".can1",{
+          x: 400,
+          y: 2351,
+          rotation: 0,
+          z:2,
+          ease: "ease.in",
+        },"last")
+        t4.to(".can2",{
+          x: 796,
+          y: 854,
+          rotation: -12,
+          z: 1,
+          ease: "ease.in",
+        },"last")
+        t4.to(".can3",{
+          x: 0,
+          y: 854,
+          rotation:12,
+          z: 1,
+          ease: "ease.in",
+        },"last")
       }
 
       // GSAP animation code can go here
@@ -73,8 +141,8 @@ function App() {
     <>
       {/* home session */}
       <Nav />
-      <div className="main-wrapper text-[#f7e7c3] bg-[#000000] h-screen">
-        <div className=" relative content-wrapper bg-[url('/bg2.png')] flex items-center justify-center h-[100vh] w-[100%] ">
+      <div className="main-wrapper text-[#f7e7c3] bg-[#000000] h-[100vh]">
+        <div id="home" className=" relative content-wrapper bg-[url('/bg2.png')] flex items-center justify-center h-[100vh] ">
           <h1 className="becool text-[150px] opacity-20 font-bold">
             BE COOL...
           </h1>
@@ -107,13 +175,13 @@ function App() {
       </div>
 
       {/* about session */}
-      <div className="about text-[#f7e7c3] bg-[url('/bg2.png')] h-screen">
+      <div id="about" className="about text-[#f7e7c3] bg-[url('/bg2.png')] h-screen">
         <h1 className="text-center pt-20 text-4xl font-bold">
           ABOUT THE DRINK
         </h1>
         <div className="flex  ">
           <div className="left text-center p-20 text-2xl font-bold">
-            <div className="box w-[400px]  h-[600px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]"></div>
+            <div className="box w-[400px]  h-[500px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3] "></div>
           </div>
           <div className="right p-10 ">
             <p className="text-center text-justify mt-10  text-xl font-semibold">
@@ -142,19 +210,27 @@ function App() {
         </div>
       </div>
       {/* Types session */}
-      <div className=" flex text-[#f7e7c3]  bg-[url('/bg2.png')] h-screen w-[100%] justify-around items-center">
-        <div className="  ">
-          <div className="box w-[300px] mt-30 h-[600px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]"></div>
+      <div id="types" className=" types flex text-[#f7e7c3]  bg-[url('/bg2.png')] h-[100vh]  justify-around items-center">
+        <div className=" relative ">
+            <img src="./can2.png" alt=""  className="can2 absolute scale-150 top-[100px] z-10"/>
+            <img src="./leaf2.png" alt="" className=" lf1 absolute left-[-30%] top-[30%] z-9 rotate-295  " />
+          <div className="box w-[300px] mt-40 h-[400px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]">
+          </div>
         </div>
         <div className="">
-          <div className="box w-[300px]  h-[600px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]"></div>
+          <div className="box w-[300px] mt-40 h-[400px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]">
+
+          </div>
         </div>
-        <div className="">
-          <div className="box w-[300px] mt-30 h-[600px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]"></div>
+        <div className="relative">
+            <img src="./can3.png" alt="" className=" can3 absolute scale-150 top-[100px] z-10"/>
+            <img src="./kirni2.png" alt="" className="lf3 absolute top-[50%] left-[30%] z-11" />
+          <div className=" box w-[300px] mt-40 h-[400px] bg-gray-900 opacity-50 rounded-3xl border-4 border-[#f7e7c3]">
+          </div>
         </div>
       </div>
       {/* contact us session */}
-      <div className="text-[#f7e7c3] bg-[url('/bg2.png')] h-screen">
+      <div id="contact" className="contact text-[#f7e7c3] bg-[url('/bg2.png')] h-[100vh]">
         <h1 className="text-center pt-20 text-4xl font-bold">CONTACT US</h1>
         <div className=" h-[80vh] flex items-center justify-start pl-20 ">
           <div className="w-1/2 ">
