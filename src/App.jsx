@@ -149,7 +149,7 @@ const t1 = gsap.timeline();
           <img
             src="./can1.png"
             alt="can1"
-            className="can1 z-10 h-[700px] absolute tranform rotate-12"
+            className="can1 z-40 h-[700px] absolute tranform rotate-12"
           />
           <img
             src="./lemon1.png"
